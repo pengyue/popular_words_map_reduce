@@ -1,0 +1,4 @@
+services:
+    app.currency_service:
+        class:     SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWordReduceyService
+        arguments: []
