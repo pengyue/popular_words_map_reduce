@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
  *
  * @final since Symfony 3.3
  */
-class qp_ms_template_symfonyDevDebugProjectContainer extends Container
+class qp_ms_template_symfonyTestDebugProjectContainer extends Container
 {
     private $parameters;
     private $targetDirs = array();
@@ -355,7 +355,7 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
      */
     protected function getCache_AppService()
     {
-        $this->services['cache.app'] = $instance = new \Symfony\Component\Cache\Adapter\FilesystemAdapter('J5sxhz8HFD', 0, (__DIR__.'/pools'));
+        $this->services['cache.app'] = $instance = new \Symfony\Component\Cache\Adapter\FilesystemAdapter('eQCLaAHISL', 0, (__DIR__.'/pools'));
 
         if ($this->has('monolog.logger.cache')) {
             $instance->setLogger(${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
@@ -391,7 +391,7 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
      */
     protected function getCache_SystemService()
     {
-        return $this->services['cache.system'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('+VLaqOdw7t', 0, 'kj9a8LuJDPUKVxjj2qyywE', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.system'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('FQ4LYhIlHS', 0, 'Fau2pbXJHEMj+7BSKq3Z6x', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -948,7 +948,7 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
      */
     protected function getJmsSerializer_DatetimeHandlerService()
     {
-        return $this->services['jms_serializer.datetime_handler'] = new \JMS\Serializer\Handler\DateHandler('Y-m-d\\TH:i:sO', 'Europe/London', true);
+        return $this->services['jms_serializer.datetime_handler'] = new \JMS\Serializer\Handler\DateHandler('Y-m-d\\TH:i:sO', 'UTC', true);
     }
 
     /**
@@ -1195,7 +1195,7 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
      */
     protected function getMonolog_Handler_FileLogService()
     {
-        $this->services['monolog.handler.file_log'] = $instance = new \Monolog\Handler\StreamHandler(($this->targetDirs[2].'/log/dev/dev.log'), 100, true, NULL);
+        $this->services['monolog.handler.file_log'] = $instance = new \Monolog\Handler\StreamHandler(($this->targetDirs[2].'/log/test/test.log'), 200, true, NULL);
 
         $instance->pushProcessor(${($_ = isset($this->services['monolog.processor.psr_log_message']) ? $this->services['monolog.processor.psr_log_message'] : $this->getMonolog_Processor_PsrLogMessageService()) && false ?: '_'});
 
@@ -1571,7 +1571,7 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
      */
     protected function getRouterService()
     {
-        $this->services['router'] = $instance = new \Symfony\Bundle\FrameworkBundle\Routing\Router($this, ($this->targetDirs[3].'/app/config/routing/routing.yml'), array('cache_dir' => __DIR__, 'debug' => true, 'generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper', 'generator_cache_class' => 'qp_ms_template_symfonyDevDebugProjectContainerUrlGenerator', 'matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper', 'matcher_cache_class' => 'qp_ms_template_symfonyDevDebugProjectContainerUrlMatcher', 'strict_requirements' => true), ${($_ = isset($this->services['router.request_context']) ? $this->services['router.request_context'] : $this->getRouter_RequestContextService()) && false ?: '_'}, ${($_ = isset($this->services['monolog.logger.router']) ? $this->services['monolog.logger.router'] : $this->get('monolog.logger.router', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        $this->services['router'] = $instance = new \Symfony\Bundle\FrameworkBundle\Routing\Router($this, ($this->targetDirs[3].'/app/config/routing/routing.yml'), array('cache_dir' => __DIR__, 'debug' => true, 'generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper', 'generator_cache_class' => 'qp_ms_template_symfonyTestDebugProjectContainerUrlGenerator', 'matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper', 'matcher_cache_class' => 'qp_ms_template_symfonyTestDebugProjectContainerUrlMatcher', 'strict_requirements' => true), ${($_ = isset($this->services['router.request_context']) ? $this->services['router.request_context'] : $this->getRouter_RequestContextService()) && false ?: '_'}, ${($_ = isset($this->services['monolog.logger.router']) ? $this->services['monolog.logger.router'] : $this->get('monolog.logger.router', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
 
         $instance->setConfigCacheFactory(${($_ = isset($this->services['config_cache_factory']) ? $this->services['config_cache_factory'] : $this->get('config_cache_factory')) && false ?: '_'});
 
@@ -1694,7 +1694,7 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
         $e->setDisplayOptions(array('maxStringLength' => 4096, 'fileLinkFormat' => $b));
 
         $f = new \Symfony\Bridge\Twig\AppVariable();
-        $f->setEnvironment('dev');
+        $f->setEnvironment('test');
         $f->setDebug(true);
         if ($this->has('request_stack')) {
             $f->setRequestStack($c);
@@ -2064,7 +2064,7 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
      */
     protected function getCache_AnnotationsService($lazyLoad = true)
     {
-        return $this->services['cache.annotations'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('ASZ0aGXZf-', 0, 'kj9a8LuJDPUKVxjj2qyywE', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.annotations'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('HsfmalZn81', 0, 'Fau2pbXJHEMj+7BSKq3Z6x', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -2074,7 +2074,7 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
      */
     protected function getCache_ValidatorService($lazyLoad = true)
     {
-        return $this->services['cache.validator'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('UiYeTtY00I', 0, 'kj9a8LuJDPUKVxjj2qyywE', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.validator'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('dwYirk2Vd7', 0, 'Fau2pbXJHEMj+7BSKq3Z6x', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -2293,7 +2293,7 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
         switch ($name) {
             case 'kernel.root_dir': $value = ($this->targetDirs[3].'/app'); break;
             case 'kernel.project_dir': $value = $this->targetDirs[3]; break;
-            case 'kernel.logs_dir': $value = ($this->targetDirs[2].'/log/dev'); break;
+            case 'kernel.logs_dir': $value = ($this->targetDirs[2].'/log/test'); break;
             case 'kernel.bundles_metadata': $value = array(
                 'FrameworkBundle' => array(
                     'parent' => NULL,
@@ -2362,7 +2362,7 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
     protected function getDefaultParameters()
     {
         return array(
-            'kernel.environment' => 'dev',
+            'kernel.environment' => 'test',
             'kernel.debug' => true,
             'kernel.name' => 'qp_ms_template_symfony',
             'kernel.cache_dir' => __DIR__,
@@ -2379,7 +2379,7 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
             ),
             'kernel.charset' => 'UTF-8',
-            'kernel.container_class' => 'qp_ms_template_symfonyDevDebugProjectContainer',
+            'kernel.container_class' => 'qp_ms_template_symfonyTestDebugProjectContainer',
             'kernel.secret' => 'a2c9092644ec312dfd95faf4b4528c3c8b3e3f9a34695a3346cc14552290fc7a',
             'fragment.renderer.hinclude.global_template' => NULL,
             'fragment.path' => '/_fragment',
@@ -2401,19 +2401,19 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
 
             ),
             'debug.error_handler.throw_at' => -1,
-            'debug.container.dump' => (__DIR__.'/qp_ms_template_symfonyDevDebugProjectContainer.xml'),
+            'debug.container.dump' => (__DIR__.'/qp_ms_template_symfonyTestDebugProjectContainer.xml'),
             'router.options.generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator',
             'router.options.generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator',
             'router.options.generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper',
             'router.options.matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher',
             'router.options.matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher',
             'router.options.matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper',
-            'router.options.matcher.cache_class' => 'qp_ms_template_symfonyDevDebugProjectContainerUrlMatcher',
-            'router.options.generator.cache_class' => 'qp_ms_template_symfonyDevDebugProjectContainerUrlGenerator',
+            'router.options.matcher.cache_class' => 'qp_ms_template_symfonyTestDebugProjectContainerUrlMatcher',
+            'router.options.generator.cache_class' => 'qp_ms_template_symfonyTestDebugProjectContainerUrlGenerator',
             'router.request_context.host' => 'localhost',
             'router.request_context.scheme' => 'http',
             'router.request_context.base_url' => '',
-            'router.cache_class_prefix' => 'qp_ms_template_symfonyDevDebugProjectContainer',
+            'router.cache_class_prefix' => 'qp_ms_template_symfonyTestDebugProjectContainer',
             'request_listener.http_port' => 80,
             'request_listener.https_port' => 443,
             'jms_serializer.form_error_handler.class' => 'JMS\\Serializer\\Handler\\FormErrorHandler',

@@ -27,11 +27,11 @@ class ReportCommandTest extends KernelTestCase
 
         $application->add(new ReportCommand());
 
-        $command = $application->find('report:merchant');
+        $command = $application->find('report:popular_words');
         $commandTester = new CommandTester($command);
         $commandTester->execute(array(
             'command'  => $command->getName(),
-            'merchant_id' => 1,
+            'number' => 100,
         ));
 
         $output = $commandTester->getDisplay();

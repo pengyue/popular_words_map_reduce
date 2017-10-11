@@ -29,7 +29,7 @@ tests - it’s certainly ok to overengineer it.
 The project is to create a command to generate a top x popular words report on a given number.
 It uses Symfony 3 framework and implemented with customized template, it utilizes dependency injection,
 service container, unit tests, integration tests, behat tests, SOLID design pattern such as observer pattern.
-It has nearly 100% code coverage on the main logic directories (src/).
+100% code coverage on the main logic directories (src/) could be achieved, however, due to time limit, a few demo test class are written.
 
 ## Getting Started
 
@@ -105,7 +105,7 @@ To run integration tests.
 vendor/phpunit/phpunit/phpunit tests/integration
 ```
 
-To run tests with generated code coverage.
+To run tests with generated code coverage, however, due to not all the tests have been written, code-coverage might not be good, but it would be simple to implement
 
 ```
 vendor/phpunit/phpunit/phpunit tests/ --coverage-clover=var/code-coverage/phpcov-unit.xml --coverage-html=var/code-coverage/phpcov-unit.html

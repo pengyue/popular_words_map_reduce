@@ -2,9 +2,6 @@
 
 namespace SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord;
 
-use SecretSales\ReportTask\Bundle\ReportBundle\Model\Merchant;
-use SecretSales\ReportTask\Bundle\ReportBundle\Model\TransactionTable;
-
 /**
  * The popular words map class
  *

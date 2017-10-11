@@ -28,6 +28,7 @@ class ReportService implements ReportServiceInterface
      * @param MapServiceInterface        $popularWordMapService
      * @param ReduceServiceInterface     $popularWordReduceService
      * @param StorageServiceInterface    $popularWordStorageService
+     * @param string                     $url
      *
      * @return bool
      */
@@ -35,9 +36,10 @@ class ReportService implements ReportServiceInterface
         SplitTextServiceInterface $popularWordSplitTextService,
         MapServiceInterface $popularWordMapService,
         ReduceServiceInterface $popularWordReduceService,
-        StorageServiceInterface $popularWordStorageService
+        StorageServiceInterface $popularWordStorageService,
+        string $url
     ) {
-        $chunkData = $popularWordSplitTextService->chunk('https://s3-eu-west-1.amazonaws.com/secretsales-dev-test/interview/flatland.txt');
+        $chunkData = $popularWordSplitTextService->chunk($url);
 
         //TODO, event-driven, and mapService worker could pick up mapping job in parallel, even better solution is to make the SplitTextService into event as well as mapService
 

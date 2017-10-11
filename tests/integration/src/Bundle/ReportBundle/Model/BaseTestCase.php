@@ -1,6 +1,6 @@
 <?php
 
-namespace SecretSales\ReportTask\UnitTest\Bundle\ReportBundle\Model;
+namespace SecretSales\ReportTask\IntegrationTest\Bundle\ReportBundle\Model;
 
 use PHPUnit\Framework\TestCase;
 

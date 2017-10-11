@@ -57,7 +57,10 @@ class ReportCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        //TODO read those from configs
+        $url                = 'https://s3-eu-west-1.amazonaws.com/secretsales-dev-test/interview/flatland.txt';
         $reportFilePath     = 'var/storage/report.csv';
+
         $number             = $input->getArgument('number');
 
         /** @var ReportServiceInterface $reportService */
@@ -82,7 +85,7 @@ class ReportCommand extends ContainerAwareCommand
         $reportService->attach(new OrderWordObserver());
         $reportService->attach(new NormalizeWordObserver());
 
-        $reportService->generate($splitService, $mapService, $reduceService, $storageService);
+        $reportService->generate($splitService, $mapService, $reduceService, $storageService, $url);
 
         echo sprintf('Csv report file has been generated at %s%s', $reportFilePath, PHP_EOL);
     }

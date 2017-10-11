@@ -20,6 +20,7 @@ interface ReportServiceInterface
      * @param MapServiceInterface        $popularWordMapService
      * @param ReduceServiceInterface     $popularWordReduceService
      * @param StorageServiceInterface    $popularWordStorageService
+     * @param string                     $url
      *
      * @return bool
      */
@@ -27,6 +28,7 @@ interface ReportServiceInterface
         SplitTextServiceInterface $popularWordSplitTextService,
         MapServiceInterface $popularWordMapService,
         ReduceServiceInterface $popularWordReduceService,
-        StorageServiceInterface $popularWordStorageService
+        StorageServiceInterface $popularWordStorageService,
+        string $url
     );
 }
