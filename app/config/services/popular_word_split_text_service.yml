@@ -1,0 +1,4 @@
+services:
+    app.popular_word_split_text_service:
+        class:     SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\SplitTextService
+        arguments: []

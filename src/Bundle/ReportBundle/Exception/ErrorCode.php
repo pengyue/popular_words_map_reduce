@@ -5,7 +5,7 @@ namespace SecretSales\ReportTask\Bundle\ReportBundle\Exception;
 /**
  * The exception code class
  *
- * @date       24/06/2017
+ * @date       09/10/2017
  * @time       16:53
  * @author     Peng Yue <penyue@gmail.com>
  * @copyright  2004-2017 Peng Yue

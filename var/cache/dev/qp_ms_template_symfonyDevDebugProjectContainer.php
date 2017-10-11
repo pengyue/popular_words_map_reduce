@@ -33,16 +33,17 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
             'jms\\serializer\\serializerinterface' => 'JMS\\Serializer\\SerializerInterface',
         );
         $this->methodMap = array(
-            '1_dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06a' => 'get1Dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06aService',
-            '2_dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06a' => 'get2Dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06aService',
+            '1_5b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51' => 'get15b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51Service',
+            '2_5b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51' => 'get25b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51Service',
             'annotation_reader' => 'getAnnotationReaderService',
             'annotations.reader' => 'getAnnotations_ReaderService',
             'api.controllers.v1.default' => 'getApi_Controllers_V1_DefaultService',
             'api.controllers.v1.phone_number' => 'getApi_Controllers_V1_PhoneNumberService',
-            'app.currency_service' => 'getApp_CurrencyServiceService',
-            'app.merchant_transaction_service' => 'getApp_MerchantTransactionServiceService',
-            'app.report_service' => 'getApp_ReportServiceService',
-            'app.storage_service' => 'getApp_StorageServiceService',
+            'app.popular_word_map_service' => 'getApp_PopularWordMapServiceService',
+            'app.popular_word_reduce_service' => 'getApp_PopularWordReduceServiceService',
+            'app.popular_word_report_service' => 'getApp_PopularWordReportServiceService',
+            'app.popular_word_split_text_service' => 'getApp_PopularWordSplitTextServiceService',
+            'app.popular_word_storage_service' => 'getApp_PopularWordStorageServiceService',
             'argument_resolver.default' => 'getArgumentResolver_DefaultService',
             'argument_resolver.request' => 'getArgumentResolver_RequestService',
             'argument_resolver.request_attribute' => 'getArgumentResolver_RequestAttributeService',
@@ -196,8 +197,8 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
             'web_profiler.debug_toolbar' => 'getWebProfiler_DebugToolbarService',
         );
         $this->privates = array(
-            '1_dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06a' => true,
-            '2_dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06a' => true,
+            '1_5b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51' => true,
+            '2_5b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51' => true,
             'annotations.reader' => true,
             'argument_resolver.default' => true,
             'argument_resolver.request' => true,
@@ -289,43 +290,53 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
     }
 
     /**
-     * Gets the public 'app.currency_service' shared service.
+     * Gets the public 'app.popular_word_map_service' shared service.
      *
-     * @return \SecretSales\ReportTask\Bundle\ReportBundle\Service\CurrencyService
+     * @return \SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\MapService
      */
-    protected function getApp_CurrencyServiceService()
+    protected function getApp_PopularWordMapServiceService()
     {
-        return $this->services['app.currency_service'] = new \SecretSales\ReportTask\Bundle\ReportBundle\Service\CurrencyService();
+        return $this->services['app.popular_word_map_service'] = new \SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\MapService();
     }
 
     /**
-     * Gets the public 'app.merchant_transaction_service' shared service.
+     * Gets the public 'app.popular_word_reduce_service' shared service.
      *
-     * @return \SecretSales\ReportTask\Bundle\ReportBundle\Service\MerchantTransactionService
+     * @return \SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\ReduceService
      */
-    protected function getApp_MerchantTransactionServiceService()
+    protected function getApp_PopularWordReduceServiceService()
     {
-        return $this->services['app.merchant_transaction_service'] = new \SecretSales\ReportTask\Bundle\ReportBundle\Service\MerchantTransactionService();
+        return $this->services['app.popular_word_reduce_service'] = new \SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\ReduceService();
     }
 
     /**
-     * Gets the public 'app.report_service' shared service.
+     * Gets the public 'app.popular_word_report_service' shared service.
      *
-     * @return \SecretSales\ReportTask\Bundle\ReportBundle\Service\ReportService
+     * @return \SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\ReportService
      */
-    protected function getApp_ReportServiceService()
+    protected function getApp_PopularWordReportServiceService()
     {
-        return $this->services['app.report_service'] = new \SecretSales\ReportTask\Bundle\ReportBundle\Service\ReportService();
+        return $this->services['app.popular_word_report_service'] = new \SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\ReportService();
     }
 
     /**
-     * Gets the public 'app.storage_service' shared service.
+     * Gets the public 'app.popular_word_split_text_service' shared service.
      *
-     * @return \SecretSales\ReportTask\Bundle\ReportBundle\Service\Storage\StorageCsvService
+     * @return \SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\SplitTextService
      */
-    protected function getApp_StorageServiceService()
+    protected function getApp_PopularWordSplitTextServiceService()
     {
-        return $this->services['app.storage_service'] = new \SecretSales\ReportTask\Bundle\ReportBundle\Service\Storage\StorageCsvService();
+        return $this->services['app.popular_word_split_text_service'] = new \SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\SplitTextService();
+    }
+
+    /**
+     * Gets the public 'app.popular_word_storage_service' shared service.
+     *
+     * @return \SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\StorageService
+     */
+    protected function getApp_PopularWordStorageServiceService()
+    {
+        return $this->services['app.popular_word_storage_service'] = new \SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\StorageService();
     }
 
     /**
@@ -355,7 +366,7 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
      */
     protected function getCache_AppService()
     {
-        $this->services['cache.app'] = $instance = new \Symfony\Component\Cache\Adapter\FilesystemAdapter('A1RfkVUEH-', 0, (__DIR__.'/pools'));
+        $this->services['cache.app'] = $instance = new \Symfony\Component\Cache\Adapter\FilesystemAdapter('J5sxhz8HFD', 0, (__DIR__.'/pools'));
 
         if ($this->has('monolog.logger.cache')) {
             $instance->setLogger(${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
@@ -391,7 +402,7 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
      */
     protected function getCache_SystemService()
     {
-        return $this->services['cache.system'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('Y3gOPHiIEE', 0, '772AjbB0e44ooiVeDdT9+T', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.system'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('+VLaqOdw7t', 0, 'Vw75PgMuAnSh0WjEf73ikE', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -429,8 +440,8 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
     protected function getConfigCacheFactoryService()
     {
         return $this->services['config_cache_factory'] = new \Symfony\Component\Config\ResourceCheckerConfigCacheFactory(new RewindableGenerator(function () {
-            yield 0 => ${($_ = isset($this->services['1_dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06a']) ? $this->services['1_dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06a'] : $this->get1Dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06aService()) && false ?: '_'};
-            yield 1 => ${($_ = isset($this->services['2_dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06a']) ? $this->services['2_dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06a'] : $this->get2Dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06aService()) && false ?: '_'};
+            yield 0 => ${($_ = isset($this->services['1_5b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51']) ? $this->services['1_5b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51'] : $this->get15b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51Service()) && false ?: '_'};
+            yield 1 => ${($_ = isset($this->services['2_5b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51']) ? $this->services['2_5b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51'] : $this->get25b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51Service()) && false ?: '_'};
         }, 2));
     }
 
@@ -948,7 +959,7 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
      */
     protected function getJmsSerializer_DatetimeHandlerService()
     {
-        return $this->services['jms_serializer.datetime_handler'] = new \JMS\Serializer\Handler\DateHandler('Y-m-d\\TH:i:sO', 'UTC', true);
+        return $this->services['jms_serializer.datetime_handler'] = new \JMS\Serializer\Handler\DateHandler('Y-m-d\\TH:i:sO', 'Europe/London', true);
     }
 
     /**
@@ -1961,23 +1972,23 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
     }
 
     /**
-     * Gets the private '1_dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06a' shared service.
+     * Gets the private '1_5b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51' shared service.
      *
      * @return \Symfony\Component\DependencyInjection\Config\ContainerParametersResourceChecker
      */
-    protected function get1Dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06aService()
+    protected function get15b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51Service()
     {
-        return $this->services['1_dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06a'] = new \Symfony\Component\DependencyInjection\Config\ContainerParametersResourceChecker($this);
+        return $this->services['1_5b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51'] = new \Symfony\Component\DependencyInjection\Config\ContainerParametersResourceChecker($this);
     }
 
     /**
-     * Gets the private '2_dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06a' shared service.
+     * Gets the private '2_5b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51' shared service.
      *
      * @return \Symfony\Component\Config\Resource\SelfCheckingResourceChecker
      */
-    protected function get2Dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06aService()
+    protected function get25b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51Service()
     {
-        return $this->services['2_dd6adc4f6ff61e62c364f504026c91af049c24a28bbd39a398d4d66d0d9ad06a'] = new \Symfony\Component\Config\Resource\SelfCheckingResourceChecker();
+        return $this->services['2_5b2c5e042f8ac999f214efbc7b967d145bbf71fc1fc446ed1bf10c74a5003d51'] = new \Symfony\Component\Config\Resource\SelfCheckingResourceChecker();
     }
 
     /**
@@ -2064,7 +2075,7 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
      */
     protected function getCache_AnnotationsService($lazyLoad = true)
     {
-        return $this->services['cache.annotations'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('7G0Vt5Rj7u', 0, '772AjbB0e44ooiVeDdT9+T', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.annotations'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('ASZ0aGXZf-', 0, 'Vw75PgMuAnSh0WjEf73ikE', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -2074,7 +2085,7 @@ class qp_ms_template_symfonyDevDebugProjectContainer extends Container
      */
     protected function getCache_ValidatorService($lazyLoad = true)
     {
-        return $this->services['cache.validator'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('kEjAUcuCDI', 0, '772AjbB0e44ooiVeDdT9+T', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.validator'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('UiYeTtY00I', 0, 'Vw75PgMuAnSh0WjEf73ikE', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**

@@ -27,14 +27,6 @@ class CurrencyWebserviceTest extends TestCase
     }
 
     /**
-     * @expectedException \SecretSales\ReportTask\Bundle\ReportBundle\Exception\CurrencyExchangeRateNotFoundException
-     */
-    public function testItCanThrowCurrencyExchangeRateNotFoundException()
-    {
-        $this->currencyWebservice->getExchangeRate('YEN', 'CAD');
-    }
-
-    /**
      * @dataProvider currencyProvider
      */
     public function testItCanGetExchangeRate($originalCurrency, $targetCurrency)

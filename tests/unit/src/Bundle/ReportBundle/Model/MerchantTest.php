@@ -54,17 +54,6 @@ class MerchantTest extends BaseTestCase
 
     /**
      * @dataProvider merchantDataProvider
-     * @expectedException \SecretSales\ReportTask\Bundle\ReportBundle\Exception\TransactionRepositoryNotFoundException
-     * @expectedExceptionCode 10002
-     * @expectedExceptionMessage Invalid transaction repository
-     */
-    public function testItCanThrowTransactionRepositoryExceptionWhenGetTransactionByMerchantIdWithoutTransactionRepository($merchantId)
-    {
-        $this->merchant->getTransactionsByMerchantId($merchantId);
-    }
-
-    /**
-     * @dataProvider merchantDataProvider
      */
     public function testItCanGetTransactionsByMerchantId($merchantId, $expected)
     {

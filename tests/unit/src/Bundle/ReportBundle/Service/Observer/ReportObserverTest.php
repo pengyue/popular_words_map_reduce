@@ -11,7 +11,7 @@ use Prophecy\Argument;
 /**
  * The unit test for the report generation observer
  *
- * @date       24/06/2017
+ * @date       09/10/2017
  * @time       22:10
  * @author     Peng Yue <penyue@gmail.com>
  * @copyright  2004-2017 Peng Yue
@@ -22,7 +22,7 @@ class ReportObserverTest extends TestCase
     public function testItCanListenToReportGenerationSuccessfully()
     {
         $data = [
-            [1, '24/06/2017', '£7.50', '£', '7.50']
+            [1, '10/10/2017', '£7.50', '£', '7.50']
         ];
         $currencies = [
             'EUR' => '€'

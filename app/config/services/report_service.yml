@@ -1,4 +1,0 @@
-services:
-    app.report_service:
-        class:     SecretSales\ReportTask\Bundle\ReportBundle\Service\ReportService
-        arguments: []

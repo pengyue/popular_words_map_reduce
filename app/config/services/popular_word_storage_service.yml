@@ -1,0 +1,4 @@
+services:
+    app.popular_word_storage_service:
+        class:     SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\StorageService
+        arguments: []

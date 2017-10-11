@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * The currency service which pull all the currency components together for exchange rate calculation
  *
- * @date       24/06/2017
+ * @date       09/10/2017
  * @time       17:15
  * @author     Peng Yue <penyue@gmail.com>
  * @copyright  2004-2017 Peng Yue
@@ -48,25 +48,6 @@ class CurrencyServiceTest extends TestCase
     {
         $this->assertSame($this->currencies, $this->currencyService->getCurrencies());
     }
-
-    /**
-     * @expectedException \SecretSales\ReportTask\Bundle\ReportBundle\Exception\CurrencyNotFoundException
-     * @expectedExceptionCode 10001
-     */
-    public function testItCanThrowCurrencyNotFoundExceptionWhenCurrencyConvertedToSymbol()
-    {
-        $this->currencyService->currencyToSymbol('THB');
-    }
-
-    /**
-     * @expectedException \SecretSales\ReportTask\Bundle\ReportBundle\Exception\CurrencyNotFoundException
-     * @expectedExceptionCode 10001
-     */
-    public function testItCanThrowCurrencyNotFoundExceptionWhenSymbolConvertedToCurrency()
-    {
-        $this->currencyService->symbolToCurrency('¥');
-    }
-
 
     /**
      * @dataProvider currencyProvider

@@ -7,34 +7,26 @@ To demonstrate your OOP and unit testing skills.
 
 ### Task
 
-Create a simple report that shows transactions for a merchant id specified as command line argument.
-
-The data.csv file contains dummy data in different currencies, the report should be in GBP.
-
-Assume that data changes and comes from a database, csv file is just for simplicity, 
-feel free to replace with sqlite if that helps.
-
-Please add code, unit tests and documentation (docblocks, comments). You do not need to connect to a real currency 
-webservice, a dummy webservice client that returns random or static values is fine.
-
-Provided code is just an indication, do not feel the need to use them if you don't want to. If something is not clear, improvise.
-
-Use any 3rd party framework or components as you see fit. Please use composer where possible if depending on 3rd party code.
+Write a console command tool that consumes a text file from the URL below, and outputs the
+100 most frequent words in the following format:
+word1,count
+word2,count
+word3,count
+...
+URL: https://s3-eu-west-1.amazonaws.com/secretsales-dev-test/interview/flatland.txt
 
 ### Assessment
 
-Your task will be assessed on your use of OOP, dependency injection, unit testing and commenting against the level of 
-the position for which you have applied.
-
-Points will be deducted for leaving any redundant files in your code (e.g. left overs from framework skeleton app creation).
-
+The goal of the task is to show your understanding of modern coding standards
+and practices. Our focus is not only on solving the problem, but the elegancy of the solution and
+tests - it’s certainly ok to overengineer it.
 
 ================ Task README =====================
 
 
-# Awin Report Task project
+# SecretSales Report Task project
 
-The project is to create a command to generate a transaction report on merchant_id and date for all 3 currencies (GBP, EUR, USD).
+The project is to create a command to generate a top x popular words report on a given number.
 It uses Symfony 3 framework and implemented with customized template, it utilizes dependency injection,
 service container, unit tests, integration tests, behat tests, SOLID design pattern such as observer pattern.
 It has nearly 100% code coverage on the main logic directories (src/).
@@ -67,38 +59,25 @@ Firs of all, install the project dependencies
 Composer update
 ```
 
-To generate all the transactions, then run the command
+To generate top 100 popular words, 100 could be any positive integer run the command
 
 ```
-php bin/console report:merchant
-```
-
-To generate the transactions with merchant id 1, then run the command
-
-```
-php bin/console report:merchant 1
-```
-
-To generate the transactions with date 01/05/2010, then run the command
-
-```
-php bin/console report:merchant null 01/05/2010
-```
-
-To generate the transactions with merchant_id 1 and date 01/05/2010, then run the command
-
-```
-php bin/console report:merchant 1 01/05/2010
+php bin/console report:popular_words 100
 ```
 
 Please review the report csv file when each command is run, for example, it look like
 
 ```
-"Merchant ID",Date,"Original Transaction","Currency Symbol","Transaction Amount","Transaction In GBP","Transaction In EUR","Transaction In USD"
-1,01/05/2010,£50.00,£,50.00,£50.00,€55.50,$65.00
-1,02/05/2010,£11.04,£,11.04,£11.04,€12.70,$14.02
-1,02/05/2010,€1.00,€,1.00,£0.86,€1.00,$1.12
-1,03/05/2010,$23.05,$,23.05,£18.44,€20.05,$23.05
+Popular_Word,Count
+the,1980
+of,1412
+and,973
+to,971
+a,813
+i,709
+in,605
+that,463
+is,383
 ```
 
 
@@ -145,7 +124,11 @@ The code has been run with the deptrac to verify any dependency violations. The 
 can be found at var/artifacts/deptrac/dependeencies.png.
 
 To run the command below to generate the report, before running the command, please install graphviz first.
-(Please refer to https://github.com/sensiolabs-de/deptrac for installation)
+(Please refer to https://github.com/sensiolabs-de/deptrac for installation), you also need to install graphviz by
+
+```
+sudo apt-get install graphviz -y
+```
 
 ```
 php deptrac.phar analyze depfile.yml --formatter-graphviz-dump-image=var/artifacts/deptrac/dependencies.png
@@ -157,7 +140,7 @@ The Dockerfile has been added, to generate a new image, please run command below
 remember removing 'vendor' and 'var/cache/*' before
 
 ```
-docker build -t awin-task .
+docker build -t secretsales-task .
 ```
 
 

@@ -2,6 +2,3 @@ services:
     api.controllers.v1.default:
         class: SecretSales\ReportTask\Bundle\ReportBundle\Controller\v1\DefaultController
         arguments: []
-    api.controllers.v1.phone_number:
-            class: SecretSales\ReportTask\Bundle\ReportBundle\Controller\v1\PhoneNumberController
-            arguments: []

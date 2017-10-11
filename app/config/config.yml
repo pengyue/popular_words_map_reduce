@@ -1,8 +1,10 @@
 imports:
     - { resource: parameters/parameters.yml }
-    - { resource: services/report_service.yml }
+    - { resource: services/popular_word_report_service.yml }
     - { resource: services/popular_word_map_service.yml }
     - { resource: services/popular_word_reduce_service.yml }
+    - { resource: services/popular_word_split_text_service.yml }
+    - { resource: services/popular_word_storage_service.yml }
 
 framework:
     templating:

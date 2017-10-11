@@ -73,24 +73,6 @@ class CurrencyConverterTest extends TestCase
     }
 
     /**
-     * @expectedException \SecretSales\ReportTask\Bundle\ReportBundle\Exception\CurrencyNotFoundException
-     * @expectedExceptionCode 10001
-     */
-    public function testItCanThrowCurrencyNotFoundExceptionWhenOriginalCurrencyNotFound()
-    {
-        $this->currencyConverter->setOriginalCurrency('THB');
-    }
-
-    /**
-     * @expectedException \SecretSales\ReportTask\Bundle\ReportBundle\Exception\CurrencyNotFoundException
-     * @expectedExceptionCode 10001
-     */
-    public function testItCanThrowCurrencyNotFoundExceptionWhenTargetCurrencyNotFound()
-    {
-        $this->currencyConverter->setTargetCurrency('YEN');
-    }
-
-    /**
      * @dataProvider currencyProvider
      */
     public function testItCanConvertCurrency($amount, $originalCurrency, $targetCurrency, $expected)

@@ -1,4 +1,4 @@
 services:
-    app.merchant_transaction_service:
-        class:     SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWordMapService
+    app.popular_word_map_service:
+        class:     SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\MapService
         arguments: []

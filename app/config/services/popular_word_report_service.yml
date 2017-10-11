@@ -1,0 +1,4 @@
+services:
+    app.popular_word_report_service:
+        class:     SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\ReportService
+        arguments: []
