@@ -89,31 +89,31 @@ There are 3 kinds of automated tests, unit tests, integration test and behat tes
 To run unit tests with default Nyancat output.
 
 ```
-vendor/phpunit/phpunit/phpunit tests/unit
+vendor/bin/phpunit tests/unit
 ```
 
 To run unit tests with plain PHPUnit output.
 
 ```
-vendor/phpunit/phpunit/phpunit tests/unit --printer PHPUnit_TextUI_ResultPrinter
+vendor/bin/phpunit tests/unit --printer PHPUnit_TextUI_ResultPrinter
 ```
 
 To run integration tests.
 
 ```
-vendor/phpunit/phpunit/phpunit tests/integration
+vendor/bin/phpunit tests/integration
 ```
 
 To run tests with generated code coverage, however, due to not all the tests have been written, code-coverage might not be good, but it would be simple to implement
 
 ```
-vendor/phpunit/phpunit/phpunit tests/ --coverage-clover=var/code-coverage/phpcov-unit.xml --coverage-html=var/code-coverage/phpcov-unit.html
+vendor/bin/phpunit tests/ --coverage-clover=var/code-coverage/phpcov-unit.xml --coverage-html=var/code-coverage/phpcov-unit.html
 ```
 
 To run behat tests.
 
 ```
-vendor/behat/behat/bin/behat
+vendor/bin/behat
 ```
 
 
