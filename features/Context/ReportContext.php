@@ -2,21 +2,25 @@
 
 namespace SecretSales\ReportTask\Behat\Context;
 
-use SecretSales\ReportTask\Bundle\ReportBundle\Model\TransactionCsvStorage;
-use SecretSales\ReportTask\Bundle\ReportBundle\Service\CurrencyService;
-use SecretSales\ReportTask\Bundle\ReportBundle\Service\Observer\ReportObserver;
-use SecretSales\ReportTask\Bundle\ReportBundle\Service\ReportService;
-use SecretSales\ReportTask\Bundle\ReportBundle\Model\Merchant;
-use SecretSales\ReportTask\Bundle\ReportBundle\Model\TransactionTable;
-use SecretSales\ReportTask\Bundle\ReportBundle\Service\MerchantTransactionService;
-use SecretSales\ReportTask\Bundle\ReportBundle\Service\MerchantTransactionServiceInterface;
+use SecretSales\ReportTask\Bundle\ReportBundle\Model\PopularWord\CsvStorage;
+use SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\MapServiceInterface;
+use SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\Observer\OrderWordObserver;
+use SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\Observer\SliceWordObserver;
+use SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\Observer\NormalizeWordObserver;
+use SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\ReduceServiceInterface;
+use SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\SplitTextService;
+use SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\MapService;
+use SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\ReduceService;
+use SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\SplitTextServiceInterface;
+use SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\StorageService;
 use Behat\Behat\Context\Context;
 use League\Csv\Reader;
+use SecretSales\ReportTask\Bundle\ReportBundle\Service\PopularWord\StorageServiceInterface;
 
 /**
  * The behat context class for ReportTask
  *
- * @date       24/06/2017
+ * @date       11/10/2017
  * @time       21:58
  * @author     Peng Yue <penyue@gmail.com>
  * @copyright  2004-2017 Peng Yue
@@ -24,56 +28,78 @@ use League\Csv\Reader;
 
 class ReportContext implements Context
 {
-    private $merchantTransactionService;
+    /**
+     * @var SplitTextServiceInterface
+     */
+    private $splitTextService;
 
-    public function __construct(MerchantTransactionService $merchantTransactionService)
-    {
-        $this->merchantTransactionService = $merchantTransactionService;
-        $this->merchantTransactionService->setMerchantRepository(new Merchant());
+    /**
+     * @var MapServiceInterface
+     */
+    private $mapService;
+
+    /**
+     * @var ReduceServiceInterface
+     */
+    private $reduceService;
+
+    /**
+     * @var StorageServiceInterface
+     */
+    private $storageService;
+
+    /**
+     * @var array
+     */
+    private $mapData;
+
+    public function __construct() {
+        $this->splitTextService = new SplitTextService();
+        $this->mapService       = new MapService();
+        $this->reduceService    = new ReduceService();
+        $this->storageService   = new StorageService();
+        $this->storageService->setStorage(new CsvStorage('var/storage/test/report.csv'));
     }
 
     /**
-     * @Given The transaction data can be read on merchant id: :merchantId
+     * @Given The target popular words text file could be fetched: :url
      */
-    public function theTransactionDataCanBeReadOnMerchantId($merchantId)
+    public function theTargetPopularWordsTextFileCouldBeFetched($url)
     {
-        $this->merchantTransactionService->setTransactionRepository(new TransactionTable('var/storage/data.csv'));
-        $self = $this->merchantTransactionService->filterTransactionsByMerchantId($merchantId);
-        \PHPUnit_Framework_Assert::assertInstanceOf(MerchantTransactionServiceInterface::class, $self);
+        $chunks = $this->splitTextService->chunk($url);
+        $mapService = $this->mapService->map($chunks);
+        \PHPUnit_Framework_Assert::assertInstanceOf(MapService::class, $mapService);
+        $this->mapData = $mapService->getData();
+        \PHPUnit_Framework_Assert::assertInternalType('array', $this->mapData);
     }
 
     /**
-     * @When I want to generate a report on merchant id: :merchantId
+     * @When I want to generate a report for top :number popular words
      */
-    public function iWantToGenerateAReportOnMerchantId($merchantId)
+    public function iWantToGenerateAReportForTopXNumberPopularWords($number)
     {
-        $reportService = new ReportService();
-        $reportService->attach(new ReportObserver());
-        $reportService->setReportFilePath('var/storage/report.csv');
-        $reportService->generate(
-            $this->merchantTransactionService,
-            new CurrencyService(),
-            new TransactionCsvStorage('var/storage/data.csv'),
-            $merchantId
-        );
+        $reduceData = $this->reduceService->reduce($this->mapData)->getData();
+        $slice = new SliceWordObserver($number);
+        $data = $slice->listenReportGeneration($reduceData);
+        $order = new OrderWordObserver();
+        $data = $order->listenReportGeneration($data);
+        $normalizer = new NormalizeWordObserver();
+        $data = $normalizer->listenReportGeneration($data);
+        $success = $this->storageService->save($data);
+
+        \PHPUnit_Framework_Assert::assertTrue($success);
     }
 
     /**
-     * @Then I should see transactions csv file generated with only merchant id: :merchantId
+     * @Then I should see :total_row_count rows in the report csv file
      */
-    public function iShouldSeeTransactionsWithMerchantId($merchantId)
+    public function iShouldSeePopularWordsCounting($total_row_count)
     {
         $csv = Reader::createFromPath('var/storage/report.csv');
         $csv->setDelimiter(',');
-        $data = $csv->setOffset(1)->setLimit(15)->fetchAll();
-        $isMerchantIdAlwaysCorrect = true;
-        foreach ($data as $item) {
-            if ($merchantId != $item[0]) {
-                $isMerchantIdAlwaysCorrect = false;
-            }
-        }
+        $data = $csv->setOffset(0)->fetchAll();
 
-        \PHPUnit_Framework_Assert::assertTrue($isMerchantIdAlwaysCorrect);
+        \PHPUnit_Framework_Assert::assertEquals($total_row_count, count($data));
     }
 
 }

@@ -20,6 +20,9 @@ class ReduceService implements ReduceServiceInterface
 
     /**
      * Combine and merge the map data into one final result
+     * TODO, if using Queue system like RabbitMQ/ActiveMQ/Kafka, could make the reduce as event as well, each reduce event
+     * could be taken as map process again for further process to get better performance due to they could be run parallelly
+     *
      *
      * @param array $data
      * @return ReduceServiceInterface

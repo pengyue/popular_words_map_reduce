@@ -21,8 +21,6 @@ The goal of the task is to show your understanding of modern coding standards
 and practices. Our focus is not only on solving the problem, but the elegancy of the solution and
 tests - it’s certainly ok to overengineer it.
 
-================ Task README =====================
-
 
 # SecretSales Report Task project
 
@@ -36,7 +34,8 @@ service container, unit tests, integration tests, behat tests, SOLID design patt
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 See deployment for notes on how to deploy the project on a live system.
 
-To start this project, use composer update to install all the dependencies
+To start this project, use composer update to install all the dependencies and the code only works on PHP7.1+ due to 
+the new PHP7.1 features
 
 
 ### Prerequisites

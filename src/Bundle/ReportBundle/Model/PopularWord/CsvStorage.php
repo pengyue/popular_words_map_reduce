@@ -45,7 +45,7 @@ class CsvStorage implements StorageInterface
      *
      * @return bool
      */
-    public function save(array $data)
+    public function save(array $data): bool
     {
         try {
             if (file_exists($this->csvFilePath)) {

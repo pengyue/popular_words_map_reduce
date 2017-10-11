@@ -5,9 +5,9 @@ Feature: Popular words report
   So that I can view which words are popular
 
   Scenario Outline:
-    Given The transaction data can be read on merchant id: "<merchantId>"
-    When I want to generate a report on merchant id: "<merchantId>"
-    Then I should see transactions csv file generated with only merchant id: "<merchantId>"
+    Given The target popular words text file could be fetched: "<url>"
+    When I want to generate a report for top "<number>" popular words
+    Then I should see "<total_row_count>" rows in the report csv file
     Examples:
-    | merchantId |
-    | 1          |
+    | url                                                                             | number  | total_row_count |
+    | https://s3-eu-west-1.amazonaws.com/secretsales-dev-test/interview/flatland.txt  | 100     | 101             |
